@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_shared_faq_metadatas",
+  "info": {
+    "name": "FaqMetadata",
+    "icon": "file-alt",
+    "displayName": "FAQ Metadata",
+    "description": "SEO metadata for FAQ topics"
+  },
+  "options": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "json"
+    },
+    "robots": {
+      "type": "json"
+    },
+    "description": {
+      "type": "text"
+    },
+    "parameters": {
+      "type": "json"
+    },
+    "pubId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faq_topics",
+  "info": {
+    "singularName": "faq-topic",
+    "pluralName": "faq-topics",
+    "displayName": "FAQ Topic",
+    "description": "FAQ topics/questions"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "topicName": {
+      "type": "string",
+      "required": true
+    },
+    "topicTranslation": {
+      "type": "string",
+      "required": true
+    },
+    "section": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::faq-section.faq-section",
+      "inversedBy": "topics"
+    },
+    "tcmID": {
+      "type": "string"
+    },
+    "linkUri": {
+      "type": "string"
+    },
+    "uniqueId": {
+      "type": "string",
+      "unique": true
+    },
+    "seoUrl": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.faq-metadata"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

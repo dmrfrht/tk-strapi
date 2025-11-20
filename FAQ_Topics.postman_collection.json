@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "faq-topics-collection",
+		"name": "FAQ Topics API",
+		"description": "FAQ Topics ve Sections için API endpoint'leri",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FAQ Topics",
+			"item": [
+				{
+					"name": "Get FAQ Topics - TR-TR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-topics?language=tr&country=tr",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-topics"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "tr",
+									"description": "Dil kodu"
+								},
+								{
+									"key": "country",
+									"value": "tr",
+									"description": "Ülke kodu"
+								}
+							]
+						},
+						"description": "Türkçe (Türkiye) FAQ topic'lerini getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Topics - EN-US",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-topics?language=en&country=us",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-topics"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "en",
+									"description": "Dil kodu"
+								},
+								{
+									"key": "country",
+									"value": "us",
+									"description": "Ülke kodu"
+								}
+							]
+						},
+						"description": "İngilizce (ABD) FAQ topic'lerini getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Topics - DE-DE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-topics?language=de&country=de",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-topics"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "de",
+									"description": "Dil kodu"
+								},
+								{
+									"key": "country",
+									"value": "de",
+									"description": "Ülke kodu"
+								}
+							]
+						},
+						"description": "Almanca (Almanya) FAQ topic'lerini getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Topics - Locale Direct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-topics?locale=tr-TR",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-topics"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "tr-TR",
+									"description": "Doğrudan locale kodu (tr-TR, en-US, de-DE)"
+								}
+							]
+						},
+						"description": "Locale parametresi ile doğrudan erişim"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Topic by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-topics/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-topics",
+								":id"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "tr-TR",
+									"description": "Locale kodu (opsiyonel)"
+								}
+							]
+						},
+						"description": "ID ile tek bir FAQ topic getirir"
+					},
+					"response": []
+				}
+			],
+			"description": "FAQ Topics endpoint'leri"
+		},
+		{
+			"name": "FAQ Sections",
+			"item": [
+				{
+					"name": "Get FAQ Sections - TR-TR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-sections?locale=tr-TR",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-sections"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "tr-TR",
+									"description": "Locale kodu"
+								},
+								{
+									"key": "populate",
+									"value": "topics",
+									"description": "Topic'leri de getir (opsiyonel)"
+								}
+							]
+						},
+						"description": "Türkçe (Türkiye) FAQ section'larını getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Sections - EN-US",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-sections?locale=en-US",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-sections"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "en-US",
+									"description": "Locale kodu"
+								},
+								{
+									"key": "populate",
+									"value": "topics",
+									"description": "Topic'leri de getir (opsiyonel)"
+								}
+							]
+						},
+						"description": "İngilizce (ABD) FAQ section'larını getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Sections - DE-DE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-sections?locale=de-DE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-sections"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "de-DE",
+									"description": "Locale kodu"
+								},
+								{
+									"key": "populate",
+									"value": "topics",
+									"description": "Topic'leri de getir (opsiyonel)"
+								}
+							]
+						},
+						"description": "Almanca (Almanya) FAQ section'larını getirir"
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ Section by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/faq-sections/:id?locale=tr-TR&populate=topics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"faq-sections",
+								":id"
+							],
+							"query": [
+								{
+									"key": "locale",
+									"value": "tr-TR",
+									"description": "Locale kodu"
+								},
+								{
+									"key": "populate",
+									"value": "topics",
+									"description": "Topic'leri de getir"
+								}
+							]
+						},
+						"description": "ID ile tek bir FAQ section getirir (topic'lerle birlikte)"
+					},
+					"response": []
+				}
+			],
+			"description": "FAQ Sections endpoint'leri"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:1337",
+			"type": "string"
+		}
+	]
+}
+
