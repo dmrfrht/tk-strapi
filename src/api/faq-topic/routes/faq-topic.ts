@@ -6,7 +6,7 @@ export default {
   routes: [
     {
       method: "GET",
-      path: "/faq-topics",
+      path: "/v1/cms/faq-topics",
       handler: "api::faq-topic.faq-topic.find",
       config: {
         auth: false,
@@ -14,7 +14,7 @@ export default {
     },
     {
       method: "GET",
-      path: "/faq-topics/:id",
+      path: "/v1/cms/faq-topics/:id",
       handler: "api::faq-topic.faq-topic.findOne",
       config: {
         auth: false,
@@ -22,7 +22,7 @@ export default {
     },
     {
       method: "POST",
-      path: "/faq-topics",
+      path: "/v1/cms/faq-topics",
       handler: "api::faq-topic.faq-topic.create",
       config: {
         auth: false,
@@ -30,7 +30,7 @@ export default {
     },
     {
       method: "PUT",
-      path: "/faq-topics/:id",
+      path: "/v1/cms/faq-topics/:id",
       handler: "api::faq-topic.faq-topic.update",
       config: {
         auth: false,
@@ -38,7 +38,7 @@ export default {
     },
     {
       method: "DELETE",
-      path: "/faq-topics/:id",
+      path: "/v1/cms/faq-topics/:id",
       handler: "api::faq-topic.faq-topic.delete",
       config: {
         auth: false,

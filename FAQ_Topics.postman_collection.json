@@ -15,12 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-topics?language=tr&country=tr",
+							"raw": "{{base_url}}/api/v1/cms/faq-topics?language=tr&country=tr",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-topics"
 							],
 							"query": [
@@ -46,12 +48,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-topics?language=en&country=us",
+							"raw": "{{base_url}}/api/v1/cms/faq-topics?language=en&country=us",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-topics"
 							],
 							"query": [
@@ -77,12 +81,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-topics?language=de&country=de",
+							"raw": "{{base_url}}/api/v1/cms/faq-topics?language=de&country=de",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-topics"
 							],
 							"query": [
@@ -108,12 +114,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-topics?locale=tr-TR",
+							"raw": "{{base_url}}/api/v1/cms/faq-topics?locale=tr-TR",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-topics"
 							],
 							"query": [
@@ -134,12 +142,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-topics/:id",
+							"raw": "{{base_url}}/api/v1/cms/faq-topics/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-topics",
 								":id"
 							],
@@ -167,12 +177,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-sections?locale=tr-TR",
+							"raw": "{{base_url}}/api/v1/cms/faq-sections?locale=tr-TR",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-sections"
 							],
 							"query": [
@@ -198,12 +210,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-sections?locale=en-US",
+							"raw": "{{base_url}}/api/v1/cms/faq-sections?locale=en-US",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-sections"
 							],
 							"query": [
@@ -229,12 +243,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-sections?locale=de-DE",
+							"raw": "{{base_url}}/api/v1/cms/faq-sections?locale=de-DE",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-sections"
 							],
 							"query": [
@@ -260,12 +276,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/faq-sections/:id?locale=tr-TR&populate=topics",
+							"raw": "{{base_url}}/api/v1/cms/faq-sections/:id?locale=tr-TR&populate=topics",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
+								"v1",
+								"cms",
 								"faq-sections",
 								":id"
 							],

@@ -2,25 +2,48 @@
  * faq-section router.
  */
 
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::faq-section.faq-section', {
-  config: {
-    find: {
-      auth: false,
+export default {
+  routes: [
+    {
+      method: "GET",
+      path: "/v1/cms/faq-sections",
+      handler: "api::faq-section.faq-section.find",
+      config: {
+        auth: false,
+      },
     },
-    findOne: {
-      auth: false,
+    {
+      method: "GET",
+      path: "/v1/cms/faq-sections/:id",
+      handler: "api::faq-section.faq-section.findOne",
+      config: {
+        auth: false,
+      },
     },
-    create: {
-      auth: false,
+    {
+      method: "POST",
+      path: "/v1/cms/faq-sections",
+      handler: "api::faq-section.faq-section.create",
+      config: {
+        auth: false,
+      },
     },
-    update: {
-      auth: false,
+    {
+      method: "PUT",
+      path: "/v1/cms/faq-sections/:id",
+      handler: "api::faq-section.faq-section.update",
+      config: {
+        auth: false,
+      },
     },
-    delete: {
-      auth: false,
+    {
+      method: "DELETE",
+      path: "/v1/cms/faq-sections/:id",
+      handler: "api::faq-section.faq-section.delete",
+      config: {
+        auth: false,
+      },
     },
-  },
-});
+  ],
+};
 
