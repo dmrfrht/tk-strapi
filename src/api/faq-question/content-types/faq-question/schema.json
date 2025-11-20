@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faq_questions",
+  "info": {
+    "singularName": "faq-question",
+    "pluralName": "faq-questions",
+    "displayName": "FAQ Question",
+    "description": "FAQ questions and answers",
+    "mainField": "title"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "question": {
+      "type": "text",
+      "required": true
+    },
+    "answer": {
+      "type": "richtext",
+      "required": true
+    },
+    "lastModifiedDateTime": {
+      "type": "datetime"
+    },
+    "legacyId": {
+      "type": "string",
+      "unique": true
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::faq-topic.faq-topic",
+      "inversedBy": "questions"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
+

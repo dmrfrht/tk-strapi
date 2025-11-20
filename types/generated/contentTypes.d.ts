@@ -563,6 +563,46 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFaqQuestionFaqQuestion extends Struct.CollectionTypeSchema {
+  collectionName: 'faq_questions';
+  info: {
+    description: 'FAQ questions and answers';
+    displayName: 'FAQ Question';
+    mainField: 'title';
+    pluralName: 'faq-questions';
+    singularName: 'faq-question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    answer: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    lastModifiedDateTime: Schema.Attribute.DateTime;
+    legacyId: Schema.Attribute.String & Schema.Attribute.Unique;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::faq-question.faq-question'
+    >;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    topic: Schema.Attribute.Relation<'manyToOne', 'api::faq-topic.faq-topic'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFaqSectionFaqSection extends Struct.CollectionTypeSchema {
   collectionName: 'faq_sections';
   info: {
@@ -628,6 +668,10 @@ export interface ApiFaqTopicFaqTopic extends Struct.CollectionTypeSchema {
     metadata: Schema.Attribute.Component<'shared.faq-metadata', false>;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::faq-question.faq-question'
+    >;
     section: Schema.Attribute.Relation<
       'manyToOne',
       'api::faq-section.faq-section'
@@ -1189,6 +1233,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::faq-question.faq-question': ApiFaqQuestionFaqQuestion;
       'api::faq-section.faq-section': ApiFaqSectionFaqSection;
       'api::faq-topic.faq-topic': ApiFaqTopicFaqTopic;
       'api::global.global': ApiGlobalGlobal;
