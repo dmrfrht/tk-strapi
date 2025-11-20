@@ -47,21 +47,13 @@ export default factories.createCoreController(
         targetLocale = "tr-TR";
       }
 
-      // Fetch all sections with their topics for the specified locale
-      // Note: locale is only set at the main query level, not in populate
-      // Strapi automatically filters related content by the same locale
+      console.log(`[FAQ Topics] Requested locale: ${targetLocale} (language=${language}, country=${country})`);
+
+      // Fetch all sections for the specified locale
       let sections = await strapi.entityService.findMany(
         "api::faq-section.faq-section",
         {
           locale: targetLocale,
-          populate: {
-            topics: {
-              populate: {
-                metadata: true,
-              },
-              sort: ["order:asc"],
-            },
-          },
           filters: {
             publishedAt: {
               $notNull: true,
@@ -77,14 +69,6 @@ export default factories.createCoreController(
           "api::faq-section.faq-section",
           {
             locale: targetLocale,
-            populate: {
-              topics: {
-                populate: {
-                  metadata: true,
-                },
-                sort: ["order:asc"],
-              },
-            },
             sort: ["order:asc"],
           }
         );
@@ -98,35 +82,70 @@ export default factories.createCoreController(
           "api::faq-section.faq-section",
           {
             locale: languageOnly,
-            populate: {
-              topics: {
-                populate: {
-                  metadata: true,
-                },
-                sort: ["order:asc"],
-              },
-            },
             sort: ["order:asc"],
           }
         );
       }
 
-      // Last resort: try without locale
-      if (!sections || !Array.isArray(sections) || sections.length === 0) {
-        sections = await strapi.entityService.findMany(
-          "api::faq-section.faq-section",
+      console.log(`[FAQ Topics] Found ${sections?.length || 0} sections for locale: ${targetLocale}`);
+
+      // Fetch topics for each section individually
+      for (const section of sections) {
+        console.log(`[FAQ Topics] Fetching topics for section: ${section.sectionName} (ID: ${section.id}, documentId: ${section.documentId})`);
+        
+        // Try to fetch topics by section ID
+        let sectionTopics = await strapi.entityService.findMany(
+          "api::faq-topic.faq-topic",
           {
-            populate: {
-              topics: {
-                populate: {
-                  metadata: true,
-                },
-                sort: ["order:asc"],
+            locale: targetLocale,
+            filters: {
+              section: {
+                id: section.id,
               },
+              publishedAt: {
+                $notNull: true,
+              },
+            },
+            populate: {
+              metadata: true,
             },
             sort: ["order:asc"],
           }
         );
+
+        // If no topics found, try without published filter
+        if (!sectionTopics || sectionTopics.length === 0) {
+          sectionTopics = await strapi.entityService.findMany(
+            "api::faq-topic.faq-topic",
+            {
+              locale: targetLocale,
+              filters: {
+                section: {
+                  id: section.id,
+                },
+              },
+              populate: {
+                metadata: true,
+              },
+              sort: ["order:asc"],
+            }
+          );
+        }
+
+        // If still no topics found, log for debugging
+        if (!sectionTopics || sectionTopics.length === 0) {
+          console.log(`[FAQ Topics] ⚠️  No topics found for section ${section.sectionName} (ID: ${section.id})`);
+        }
+
+        // Attach topics to section
+        (section as any).topics = sectionTopics || [];
+        console.log(`[FAQ Topics] Section "${section.sectionName}" has ${sectionTopics?.length || 0} topics`);
+        
+        // Debug: log first topic if exists
+        if (sectionTopics && sectionTopics.length > 0) {
+          const firstTopic = sectionTopics[0] as any;
+          console.log(`[FAQ Topics] First topic: ${firstTopic.topicTranslation}`);
+        }
       }
 
       // Transform data to match old API format
@@ -134,6 +153,8 @@ export default factories.createCoreController(
 
       sections.forEach((section: any) => {
         const sectionKey = section.sectionTranslation || section.sectionName;
+        
+        console.log(`[FAQ Topics] Processing section: ${sectionKey} with ${section.topics?.length || 0} topics`);
 
         if (!response[sectionKey]) {
           response[sectionKey] = [];

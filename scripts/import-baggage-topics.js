@@ -270,6 +270,7 @@ async function importBaggageTopics(app) {
           sectionName: 'BAGGAGE',
           sectionTranslation: 'BAGAJ',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -314,6 +315,7 @@ async function importBaggageTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

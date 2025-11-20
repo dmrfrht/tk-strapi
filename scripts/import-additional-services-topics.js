@@ -379,6 +379,7 @@ async function importAdditionalServicesTopics(app) {
           sectionName: '9 ADDITIONAL SERVICES',
           sectionTranslation: 'EK HİZMETLER',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -423,6 +424,7 @@ async function importAdditionalServicesTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

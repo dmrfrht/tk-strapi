@@ -355,6 +355,7 @@ async function importPassengerTypesTopics(app) {
           sectionName: 'PASSENGER TYPES',
           sectionTranslation: 'YOLCU TİPLERİ',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -399,6 +400,7 @@ async function importPassengerTypesTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

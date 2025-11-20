@@ -110,6 +110,7 @@ async function importFareRulesPaymentTopics(app) {
           sectionName: 'FARE RULES and PAYMENT',
           sectionTranslation: 'ÜCRET KURALLARI VE ÖDEME',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -154,6 +155,7 @@ async function importFareRulesPaymentTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

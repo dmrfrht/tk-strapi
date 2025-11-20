@@ -158,6 +158,7 @@ async function importPetsMusicSportsTopics(app) {
           sectionName: 'PETS, MUSIC INSTRUMENTS and SPORTS EQUIPMENTS',
           sectionTranslation: 'EVCİL HAYVANLAR, MÜZİK ALETLERİ VE SPOR EKİPMANLARI',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -202,6 +203,7 @@ async function importPetsMusicSportsTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

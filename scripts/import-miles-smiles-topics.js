@@ -370,6 +370,7 @@ async function importMilesSmilesTopics(app) {
           sectionName: '5 MILES&SMILES',
           sectionTranslation: 'MILES&SMILES',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -414,6 +415,7 @@ async function importMilesSmilesTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

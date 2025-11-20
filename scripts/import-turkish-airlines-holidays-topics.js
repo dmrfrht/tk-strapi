@@ -66,6 +66,7 @@ async function importTurkishAirlinesHolidaysTopics(app) {
           sectionName: 'TURKISH AIRLINES HOLIDAYS',
           sectionTranslation: 'TURKISH AIRLINES HOLIDAYS',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -110,6 +111,7 @@ async function importTurkishAirlinesHolidaysTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });

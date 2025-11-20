@@ -66,6 +66,7 @@ async function importTkWalletTopics(app) {
           sectionName: 'TK WALLET',
           sectionTranslation: 'TK CÜZDAN',
           order: 0,
+          publishedAt: new Date(),
         },
         locale: locale,
       });
@@ -110,6 +111,7 @@ async function importTkWalletTopics(app) {
             seoUrl: topicData.seoUrl,
             metadata: topicData.metadata,
             order: 0,
+            publishedAt: new Date(),
           },
           locale: locale,
         });
