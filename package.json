@@ -22,6 +22,7 @@
     "import:flight-experience": "node ./scripts/import-flight-experience-topics.js",
     "import:fare-rules-payment": "node ./scripts/import-fare-rules-payment-topics.js",
     "import:en-us": "node ./scripts/import-en-us-content.js",
+    "import:de-de": "node ./scripts/import-de-de-content.js",
     "check:content": "node ./scripts/check-content.js",
     "publish:all": "node ./scripts/publish-all-content.js",
     "debug:topics": "node ./scripts/debug-topics-sections.js",
