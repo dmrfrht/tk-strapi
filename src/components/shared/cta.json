@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_ctas",
+  "info": {
+    "displayName": "Call to Action",
+    "icon": "hand-paper",
+    "description": "Call to action section with button"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "buttonLink": {
+      "type": "string",
+      "required": true
+    },
+    "buttonStyle": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "outline"],
+      "default": "primary"
+    }
+  }
+}
+

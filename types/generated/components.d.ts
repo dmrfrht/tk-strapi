@@ -1,5 +1,24 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedCta extends Struct.ComponentSchema {
+  collectionName: 'components_shared_ctas';
+  info: {
+    description: 'Call to action section with button';
+    displayName: 'Call to Action';
+    icon: 'hand-paper';
+  };
+  attributes: {
+    buttonLink: Schema.Attribute.String & Schema.Attribute.Required;
+    buttonStyle: Schema.Attribute.Enumeration<
+      ['primary', 'secondary', 'outline']
+    > &
+      Schema.Attribute.DefaultTo<'primary'>;
+    buttonText: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedFaqMetadata extends Struct.ComponentSchema {
   collectionName: 'components_shared_faq_metadatas';
   info: {
@@ -20,6 +39,44 @@ export interface SharedFaqMetadata extends Struct.ComponentSchema {
     pubId: Schema.Attribute.String;
     robots: Schema.Attribute.JSON;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedGallery extends Struct.ComponentSchema {
+  collectionName: 'components_shared_galleries';
+  info: {
+    description: 'Image gallery component';
+    displayName: 'Gallery';
+    icon: 'images';
+  };
+  attributes: {
+    columns: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<3>;
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedHero extends Struct.ComponentSchema {
+  collectionName: 'components_shared_heros';
+  info: {
+    description: 'Hero section with title, description and image';
+    displayName: 'Hero';
+    icon: 'star';
+  };
+  attributes: {
+    buttonLink: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -85,15 +142,35 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedVideoEmbed extends Struct.ComponentSchema {
+  collectionName: 'components_shared_video_embeds';
+  info: {
+    description: 'Embed video from URL or upload';
+    displayName: 'Video Embed';
+    icon: 'play';
+  };
+  attributes: {
+    autoplay: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    poster: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String;
+    videoFile: Schema.Attribute.Media<'videos'>;
+    videoUrl: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.cta': SharedCta;
       'shared.faq-metadata': SharedFaqMetadata;
+      'shared.gallery': SharedGallery;
+      'shared.hero': SharedHero;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.video-embed': SharedVideoEmbed;
     }
   }
 }

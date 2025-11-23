@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_shared_video_embeds",
+  "info": {
+    "displayName": "Video Embed",
+    "icon": "play",
+    "description": "Embed video from URL or upload"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "videoUrl": {
+      "type": "string",
+      "description": "YouTube, Vimeo or other video URL"
+    },
+    "videoFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["videos"]
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
+      "description": "Poster image for video"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
+

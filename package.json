@@ -10,6 +10,7 @@
     "dev": "strapi develop",
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
+    "seed:pages": "node ./scripts/seed-pages.js",
     "setup:graphql-permissions": "node ./scripts/setup-graphql-permissions.js",
     "setup:admin-roles": "node ./scripts/setup-admin-roles.js",
     "setup:api-roles": "node ./scripts/setup-api-roles.js",
