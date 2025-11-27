@@ -1,6 +1,7 @@
 // @ts-ignore - StrapiApp type is available at runtime
 import type { StrapiApp } from "@strapi/strapi/admin";
 import { TranslationButton } from "./components/TranslationButton";
+import { PageChildrenFilter } from "./components/PageChildrenFilter";
 
 export default {
   config: {
@@ -18,9 +19,18 @@ export default {
             Component: TranslationButton,
           });
         }
+
+        // Inject PageChildrenFilter to filter out parent from children list
+        const leftLinks = cmPlugin.injectionZones.editView["left-links"];
+        if (Array.isArray(leftLinks)) {
+          leftLinks.push({
+            name: "PageChildrenFilter",
+            Component: PageChildrenFilter,
+          });
+        }
       }
     } catch (error) {
-      console.error("Error registering translation component:", error);
+      console.error("Error registering components:", error);
     }
   },
   bootstrap(app: any) {

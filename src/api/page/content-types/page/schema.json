@@ -30,6 +30,26 @@
       "targetField": "title",
       "required": true
     },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::page.page",
+      "inversedBy": "children"
+    },
+    "children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "parent"
+    },
+    "path": {
+      "type": "string",
+      "required": false
+    },
+    "fullPath": {
+      "type": "string",
+      "required": false
+    },
     "description": {
       "type": "text",
       "pluginOptions": {

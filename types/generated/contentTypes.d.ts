@@ -736,6 +736,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    children: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     content: Schema.Attribute.DynamicZone<
       [
         'shared.hero',
@@ -757,8 +758,11 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    fullPath: Schema.Attribute.String;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
+    parent: Schema.Attribute.Relation<'manyToOne', 'api::page.page'>;
+    path: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
