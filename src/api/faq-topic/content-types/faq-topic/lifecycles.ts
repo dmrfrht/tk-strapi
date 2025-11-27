@@ -1,9 +1,5 @@
 /**
- * Lifecycle hooks for FAQ Question
- * 
- * Note: Auto-translation via lifecycle hooks is disabled by default
- * to avoid unnecessary API costs. Use the translation API endpoints
- * to translate content manually when needed.
+ * Lifecycle hooks for FAQ Topic
  */
 
 export default {
@@ -64,7 +60,7 @@ export default {
 
     const entityId = typeof where?.id === 'object' ? where.id.id : where?.id;
     if (entityId) {
-      const entity: any = await strapi.entityService.findOne('api::faq-question.faq-question', entityId, queryOptions);
+      const entity: any = await strapi.entityService.findOne('api::faq-topic.faq-topic', entityId, queryOptions);
       
       if (entity?.approvalStatus?.status === 'pending') {
         // Update approval status to approved
@@ -80,3 +76,4 @@ export default {
     }
   },
 };
+

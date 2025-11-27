@@ -141,6 +141,9 @@ async function setupAdminRoles() {
               action: permissionAction,
               role: role.id,
               subject: `api::${ctConfig.contentType}.${ctConfig.contentType}`,
+              conditions: [],
+              properties: {},
+              actionParameters: {},
             });
           }
         }
@@ -164,6 +167,9 @@ async function setupAdminRoles() {
               action: permissionAction,
               role: role.id,
               subject: pluginName,
+              conditions: [],
+              properties: {},
+              actionParameters: {},
             });
           }
         }

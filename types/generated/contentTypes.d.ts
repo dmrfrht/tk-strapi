@@ -471,6 +471,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    approvalStatus: Schema.Attribute.Component<'shared.approval-status', false>;
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     blocks: Schema.Attribute.DynamicZone<
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
@@ -582,6 +583,7 @@ export interface ApiFaqQuestionFaqQuestion extends Struct.CollectionTypeSchema {
   };
   attributes: {
     answer: Schema.Attribute.RichText & Schema.Attribute.Required;
+    approvalStatus: Schema.Attribute.Component<'shared.approval-status', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -620,6 +622,7 @@ export interface ApiFaqSectionFaqSection extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    approvalStatus: Schema.Attribute.Component<'shared.approval-status', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -656,6 +659,7 @@ export interface ApiFaqTopicFaqTopic extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    approvalStatus: Schema.Attribute.Component<'shared.approval-status', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -742,6 +746,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    approvalStatus: Schema.Attribute.Component<'shared.approval-status', false>;
     children: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     content: Schema.Attribute.DynamicZone<
       [

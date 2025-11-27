@@ -81,7 +81,11 @@
         "shared.gallery",
         "shared.video-embed"
       ]
+    },
+    "approvalStatus": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.approval-status"
     }
   }
 }
-

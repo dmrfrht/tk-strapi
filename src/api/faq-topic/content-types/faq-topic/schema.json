@@ -57,6 +57,11 @@
       "relation": "oneToMany",
       "target": "api::faq-question.faq-question",
       "mappedBy": "topic"
+    },
+    "approvalStatus": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.approval-status"
     }
   }
 }

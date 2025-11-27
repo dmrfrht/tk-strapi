@@ -2,6 +2,9 @@
 import type { StrapiApp } from "@strapi/strapi/admin";
 import { TranslationButton } from "./components/TranslationButton";
 import { PageChildrenFilter } from "./components/PageChildrenFilter";
+import { HidePublishButton } from "./components/HidePublishButton";
+import { SubmitForApprovalButton } from "./components/SubmitForApprovalButton";
+import { PendingApprovalsBadge } from "./components/PendingApprovalsBadge";
 
 export default {
   config: {
@@ -25,6 +28,38 @@ export default {
             });
           }
 
+          // Inject HidePublishButton to hide publish button for users without permission
+          const hasHidePublishButton = rightLinks.some(
+            (link: any) => link.name === "HidePublishButton"
+          );
+          if (!hasHidePublishButton) {
+            rightLinks.push({
+              name: "HidePublishButton",
+              Component: HidePublishButton,
+            });
+          }
+
+          // Inject SubmitForApprovalButton for users without publish permission
+          const hasSubmitButton = rightLinks.some(
+            (link: any) => link.name === "SubmitForApprovalButton"
+          );
+          if (!hasSubmitButton) {
+            rightLinks.push({
+              name: "SubmitForApprovalButton",
+              Component: SubmitForApprovalButton,
+            });
+          }
+
+          // Inject PendingApprovalsBadge to show pending count
+          const hasBadge = rightLinks.some(
+            (link: any) => link.name === "PendingApprovalsBadge"
+          );
+          if (!hasBadge) {
+            rightLinks.push({
+              name: "PendingApprovalsBadge",
+              Component: PendingApprovalsBadge,
+            });
+          }
         }
 
         // Inject PageChildrenFilter to filter out parent from children list
@@ -41,11 +76,26 @@ export default {
           }
         }
       }
+
+      // Note: Custom menu links and pages in Strapi 5 require plugin extension
+      // For now, users can access pending approvals via:
+      // 1. API endpoint: GET /api/approval/pending
+      // 2. Badge component (shows count and links to page)
+      // 3. Direct URL: /admin/pending-approvals (if route is configured)
     } catch (error) {
       console.error("Error registering components:", error);
     }
   },
   bootstrap(app: any) {
-    // Bootstrap hook - component is already registered
+    // Add badge to header if user has permission
+    try {
+      // Inject badge into header
+      const headerPlugin = app.getPlugin?.("content-manager");
+      if (headerPlugin) {
+        // Badge will be shown via PendingApprovalsBadge component
+      }
+    } catch (error) {
+      console.error("Error in bootstrap:", error);
+    }
   },
 };

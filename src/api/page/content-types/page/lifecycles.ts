@@ -28,9 +28,9 @@ export default {
   },
 
   /**
-   * Before update: Validate parent and children selection
+   * Before update: Validate parent/children selection and check publish permissions
    */
-  async beforeUpdate(event) {
+  async beforeUpdate(event: any) {
     const { data, where } = event.params;
     const locale = event.params.locale;
     const queryOptions: any = {};
@@ -79,20 +79,56 @@ export default {
         throw new Error('Cannot add the same page as its own child.');
       }
     }
-  },
 
-  async afterCreate(event) {
-    const { result } = event;
-    await strapi.service('api::page.page').updatePagePath(result.id, event.params.locale);
-  },
+    // Check if this is a publish action (publishedAt is being set)
+    const isPublishing = data.publishedAt !== undefined && data.publishedAt !== null;
+    const wasPublished = currentPage.publishedAt !== null;
 
-  async afterUpdate(event) {
-    const { result } = event;
-    await strapi.service('api::page.page').updatePagePath(result.id, event.params.locale);
-  },
+    if (isPublishing && !wasPublished) {
+      // Try to get user from request context
+      let userId: number | undefined;
+      try {
+        const ctx = strapi.requestContext.get();
+        userId = ctx?.state?.user?.id;
+      } catch (e) {
+        // No request context, might be from script - allow for backward compatibility
+        return;
+      }
 
-  async afterDelete(event) {
-    // Optionally handle cleanup
+      // If no user context, allow publish (might be from script or migration)
+      if (!userId) {
+        return;
+      }
+
+      // Check if user has publish permission
+      const hasPermission = await strapi.service('api::approval.approval').hasPublishPermission(userId);
+
+      if (!hasPermission) {
+        // User doesn't have permission, prevent publish
+        delete data.publishedAt;
+        throw new Error(
+          'You do not have permission to publish content directly. Please submit your content for approval. An admin will review and publish it.'
+        );
+      }
+
+      // If user has permission, check if content is already approved
+      const entityWithApproval: any = await strapi.entityService.findOne('api::page.page', where.id, {
+        ...queryOptions,
+        populate: ['approvalStatus'],
+      });
+      
+      if (entityWithApproval?.approvalStatus?.status === 'pending') {
+        // Update approval status to approved
+        if (entityWithApproval.approvalStatus.id) {
+          data.approvalStatus = {
+            id: entityWithApproval.approvalStatus.id,
+            status: 'approved',
+            reviewedAt: new Date(),
+            reviewedBy: userId,
+          };
+        }
+      }
+    }
   },
 };
 

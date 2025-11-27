@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_shared_approval_status",
+  "info": {
+    "displayName": "Approval Status",
+    "description": "Content approval status and metadata"
+  },
+  "options": {},
+  "attributes": {
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "pending", "approved", "rejected"],
+      "default": "draft",
+      "required": true
+    },
+    "submittedAt": {
+      "type": "datetime"
+    },
+    "submittedBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "reviewedAt": {
+      "type": "datetime"
+    },
+    "reviewedBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "rejectionReason": {
+      "type": "text"
+    }
+  }
+}
+

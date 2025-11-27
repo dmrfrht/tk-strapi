@@ -1,5 +1,25 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedApprovalStatus extends Struct.ComponentSchema {
+  collectionName: 'components_shared_approval_status';
+  info: {
+    description: 'Content approval status and metadata';
+    displayName: 'Approval Status';
+  };
+  attributes: {
+    rejectionReason: Schema.Attribute.Text;
+    reviewedAt: Schema.Attribute.DateTime;
+    reviewedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+    status: Schema.Attribute.Enumeration<
+      ['draft', 'pending', 'approved', 'rejected']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'draft'>;
+    submittedAt: Schema.Attribute.DateTime;
+    submittedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+  };
+}
+
 export interface SharedCta extends Struct.ComponentSchema {
   collectionName: 'components_shared_ctas';
   info: {
@@ -161,6 +181,7 @@ export interface SharedVideoEmbed extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.approval-status': SharedApprovalStatus;
       'shared.cta': SharedCta;
       'shared.faq-metadata': SharedFaqMetadata;
       'shared.gallery': SharedGallery;
