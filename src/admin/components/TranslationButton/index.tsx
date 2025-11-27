@@ -5,6 +5,7 @@ import {
   Typography,
   Loader,
   Dialog,
+  Box,
 } from "@strapi/design-system";
 // @ts-ignore - These are available at runtime from Strapi admin
 import { useNotification, useFetchClient } from "@strapi/strapi/admin";
@@ -380,9 +381,16 @@ export const TranslationButton: React.FC = () => {
 
   return (
     <>
-      <Button variant="secondary" onClick={() => setIsOpen(true)} size="S">
-        🌐 Translate
-      </Button>
+      <Box width="100%">
+        <Button
+          variant="secondary"
+          onClick={() => setIsOpen(true)}
+          size="S"
+          style={{ width: "100%" }}
+        >
+          🌐 Translate
+        </Button>
+      </Box>
 
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
         <Dialog.Content>
