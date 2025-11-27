@@ -8,7 +8,13 @@
     "description": "Dynamic pages with flexible content blocks"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "preview": {
+      "url": "/preview/{id}",
+      "query": {
+        "locale": "{locale}"
+      }
+    }
   },
   "pluginOptions": {
     "i18n": {

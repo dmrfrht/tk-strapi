@@ -14,19 +14,31 @@ export default {
       if (cmPlugin?.injectionZones?.editView) {
         const rightLinks = cmPlugin.injectionZones.editView["right-links"];
         if (Array.isArray(rightLinks)) {
-          rightLinks.push({
-            name: "TranslationButton",
-            Component: TranslationButton,
-          });
+          // Check if component already exists to avoid duplicate injection
+          const hasTranslationButton = rightLinks.some(
+            (link: any) => link.name === "TranslationButton"
+          );
+          if (!hasTranslationButton) {
+            rightLinks.push({
+              name: "TranslationButton",
+              Component: TranslationButton,
+            });
+          }
+
         }
 
         // Inject PageChildrenFilter to filter out parent from children list
         const leftLinks = cmPlugin.injectionZones.editView["left-links"];
         if (Array.isArray(leftLinks)) {
-          leftLinks.push({
-            name: "PageChildrenFilter",
-            Component: PageChildrenFilter,
-          });
+          const hasPageChildrenFilter = leftLinks.some(
+            (link: any) => link.name === "PageChildrenFilter"
+          );
+          if (!hasPageChildrenFilter) {
+            leftLinks.push({
+              name: "PageChildrenFilter",
+              Component: PageChildrenFilter,
+            });
+          }
         }
       }
     } catch (error) {

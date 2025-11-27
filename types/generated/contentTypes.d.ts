@@ -729,6 +729,12 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: true;
+    preview: {
+      query: {
+        locale: '{locale}';
+      };
+      url: '/preview/{id}';
+    };
   };
   pluginOptions: {
     i18n: {
